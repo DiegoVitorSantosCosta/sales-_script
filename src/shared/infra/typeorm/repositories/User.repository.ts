@@ -7,7 +7,7 @@ export const UsersRepository = AppDataSource.getRepository(User).extend({
         const user = await this.findOne({
             where: {
                 name
-            },
+            }
         });
 
         return user;

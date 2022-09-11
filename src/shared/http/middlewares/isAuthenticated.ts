@@ -20,11 +20,15 @@ export default function isAuthenticated(
         throw new AppError('JWT Token is missing.');
     }
     // Bearer sdlkfjsldkfjlsjfffdklfjdflksjflkjfdlk3405905
-    const [, token] = authHeader.split(' ');
+    let token;
+    if (authHeader.includes('Bearer')) {
+
+        token = authHeader.split(' ');
+    }
+    token = authHeader;
 
     try {
         const decodedToken = verify(token, authConfig.jwt.secret);
-
         const { sub } = decodedToken as TokenPayload;
 
         request.user = {

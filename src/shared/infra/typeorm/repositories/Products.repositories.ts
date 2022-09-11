@@ -1,5 +1,6 @@
 import { AppDataSource } from './../index';
 import { Product } from './../entities/Product';
+import { In } from 'typeorm';
 
 
 
@@ -9,8 +10,20 @@ export const productsRepositories = AppDataSource.getRepository(Product).extend(
             where: {
                 name,
             },
+
         });
 
         return product;
+    },
+    async findAllByIds(products: any[]): Promise<Product[]> {
+        const productIds = products.map(product => product.id);
+
+        const existentProducts = await this.find({
+            where: {
+                id: In(productIds)
+            },
+        });
+
+        return existentProducts;
     }
 })

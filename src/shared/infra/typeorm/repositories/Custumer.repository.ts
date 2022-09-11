@@ -3,6 +3,7 @@ import Customer from "../entities/Custumer";
 
 export const customersRepository = AppDataSource.getRepository(Customer).extend({
 
+
     async findByName(name: string): Promise<Customer | null> {
         const customer = await this.findOne({
             where: {
