@@ -8,7 +8,7 @@ coverage
 ormconfig.json
 dist
 .env
-anotação word
+anotações word
 
 uploads/*
 !uploads/.gitkeep

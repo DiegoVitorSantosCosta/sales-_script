@@ -9,7 +9,7 @@ export default class ListProductService {
 
         let products = await redisCache.recover<Product[]>(
             'PRODUCT_LIST',
-        );
+        ); 
 
         if (!products) {
             products = await productsRepositories.find();
