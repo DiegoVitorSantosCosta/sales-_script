@@ -10,7 +10,7 @@ export default interface Irequest {
     quantity: number
 }
 export default class CreatedProductService {
-    public async execute({ name, price, quantity }: any): Promise<Product> {
+    public async execute({ name, price, quantity, cat_id }: any): Promise<Product> {
         const productExists = await productsRepositories.findByName(name);
         const redisCache = new RedisCache();
 
@@ -19,7 +19,7 @@ export default class CreatedProductService {
 
         }
         const product = productsRepositories.create({
-            name, price, quantity
+            name, price, quantity, cat_id
         })
         await redisCache.invalidate('PRODUCT_LIST')
         await productsRepositories.save(product);

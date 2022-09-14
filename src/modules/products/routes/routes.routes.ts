@@ -24,6 +24,7 @@ productsRouter.post(
             name: Joi.string().required(),
             price: Joi.number().precision(2).required(),
             quantity: Joi.number().required(),
+            cat_id: Joi.string().optional()
         },
     }),
     productsController.create,

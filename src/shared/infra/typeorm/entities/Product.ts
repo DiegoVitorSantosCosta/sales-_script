@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne } from "typeorm"
 import OrdersProducts from "./OrdersProducts";
+import { Category } from './Category';
 
 @Entity('products')
 export class Product {
@@ -7,6 +8,9 @@ export class Product {
     id: string;
     @OneToMany(() => OrdersProducts, order_products => order_products.product)
     order_products: OrdersProducts[];
+
+    @Column('varchar')
+    cat_id: string
 
     @Column()
     name: string;
