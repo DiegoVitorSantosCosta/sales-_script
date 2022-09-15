@@ -8,7 +8,7 @@ export default class ShowCategoryService {
         let categoriesProducts = await categoriesRepositories.query(`WITH RECURSIVE cats AS ( SELECT	id, id_pai, name FROM	categories 
             WHERE id =  '${id}' UNION SELECT c.id,  c.id_pai, c.name FROM categories c INNER JOIN cats s ON s.id = c.id_pai ) 
             select c.id as cat_id, c.name as category_name,p.id as product_id, p.name, p.quantity, p.price ,p.created_at, p.updated_at
-             from cats as c left JOIN products p ON p.cat_id = c.id`);
+             from cats as c left JOIN products p ON p.cat_id = c.id order by created_at desc`);
         //  where p.cat_id = c.id
 
         if (!categoriesProducts) {

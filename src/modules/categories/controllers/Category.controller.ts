@@ -3,6 +3,7 @@ import CreateCategoryService from '../services/Create.category.service'
 import ListCategoryService from "../services/List.category.service";
 import ShowCategoryService from './../services/Showcategory.service';
 import DeleteCategoryService from './../services/Deletecategoy.service';
+import UpdateCategoryService from "../services/Updatecategory.service";
 
 export default class CategoryController {
 
@@ -43,5 +44,16 @@ export default class CategoryController {
         const del = await deleteCategory.execute(id);
 
         return res.json(true)
+    }
+    public async updateCategory(request: Request, response: Response): Promise<Response> {
+
+        const { id } = request.params;
+        const { id_pai, name } = request.body;
+        const updateCategory = new UpdateCategoryService();
+
+        const category = await updateCategory.execute(id, id_pai, name);
+
+        return response.json(category);
+
     }
 }

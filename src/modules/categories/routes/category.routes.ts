@@ -16,14 +16,11 @@ categoryRoutes.post(
             id: Joi.string().optional()
         },
     }),
-    categoriesController.create
-);
+    categoriesController.create);
 
-categoryRoutes.get(
-    '/:id', categoriesController.showCategoryProducts
-);
-
+categoryRoutes.get('/:id', categoriesController.showCategoryProducts);
 categoryRoutes.get('/', categoriesController.listCategories);
 categoryRoutes.delete('/:id', categoriesController.deleteCategories);
+categoryRoutes.put('/:id', categoriesController.updateCategory);
 
 export default categoryRoutes;
