@@ -25,4 +25,5 @@ export default class OrdersController {
 
         return response.json(order);
     }
+
 }

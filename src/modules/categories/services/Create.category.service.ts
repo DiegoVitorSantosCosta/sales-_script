@@ -11,13 +11,11 @@ export default interface Irequest {
 }
 export default class CreateCategoryService {
     public async execute({ name, id }: any): Promise<any> {
-        // const categoryExists = await categoriesRepositories.findByName(name);
+        const categoryExists = await categoriesRepositories.findByName(name);
 
-
-        // if (categoryExists) {
-        //     throw new AppError("There is already one category with this name.", 404);
-
-        // }
+        if (categoryExists) {
+            throw new AppError('There is a category with this name.')
+        }
         const category = categoriesRepositories.create({
             name,
             id
@@ -25,4 +23,6 @@ export default class CreateCategoryService {
         await categoriesRepositories.save(category);
         return category;
     }
+
+
 }

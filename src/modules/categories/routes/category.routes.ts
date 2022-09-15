@@ -18,4 +18,12 @@ categoryRoutes.post(
     }),
     categoriesController.create
 );
+
+categoryRoutes.get(
+    '/:id', categoriesController.showCategoryProducts
+);
+
+categoryRoutes.get('/', categoriesController.listCategories);
+categoryRoutes.delete('/:id', categoriesController.deleteCategories);
+
 export default categoryRoutes;
